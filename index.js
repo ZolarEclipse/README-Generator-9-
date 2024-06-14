@@ -15,23 +15,16 @@ then utilizing your responses. The new readme.md
 file will be written into the output directory
 ${"*".repeat(60)}\n\n`);
 
-//call Q & A because not all answers are 42
+//call Q&A
 let answers = await getAnswers();
 //clear screen of Q&A
 console.clear();
-// console.log(answers);
-
 //destructure the key mapping from data model
 let { TITLE, DESC, TOC, INST, USAGE, LIC, CONT, TEST, QA, EMAIL, ID } = QA_MAP;
 
 //get the html url for adding license link
 const lic_uri = await getLicenseUrl(answers[LIC.name].uri);
 
-/* write all the content using the decorated writer
-// not entirely happy with the design as might have been better to
-// create a template file and do some iteration/replacement since
-// it would have small file footprint. Maybe next time :-)
-*/
 const r = writer();
 r.write(`# ${answers[TITLE.name]}`)
   .write(
